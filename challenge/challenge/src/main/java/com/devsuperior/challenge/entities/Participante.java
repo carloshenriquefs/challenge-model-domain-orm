@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_participant")
-public class Participant {
+@Table(name = "tb_participante")
+public class Participante {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,15 +17,15 @@ public class Participant {
     private String email;
 
     @ManyToMany
-    @JoinTable(name = "tb_participant_activity",
-            joinColumns = @JoinColumn(name = "participant_id"),
-            inverseJoinColumns = @JoinColumn(name = "activity_id"))
-    private List<Activity> activitys = new ArrayList<>();
+    @JoinTable(name = "tb_participante_atividade",
+            joinColumns = @JoinColumn(name = "participante_id"),
+            inverseJoinColumns = @JoinColumn(name = "atividade_id"))
+    private List<Atividade> atividades = new ArrayList<>();
 
-    public Participant() {
+    public Participante() {
     }
 
-    public Participant(Integer id, String nome, String email) {
+    public Participante(Integer id, String nome, String email) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -60,7 +60,7 @@ public class Participant {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Participant that = (Participant) o;
+        Participante that = (Participante) o;
 
         return Objects.equals(id, that.id);
     }

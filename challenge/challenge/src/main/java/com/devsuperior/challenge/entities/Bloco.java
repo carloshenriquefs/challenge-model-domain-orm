@@ -2,28 +2,29 @@ package com.devsuperior.challenge.entities;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_category")
-public class Category {
+@Table(name = "tb_bloco")
+public class Bloco {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String descricao;
+    private Date inicio;
+    private Date fim;
 
-    @OneToMany(mappedBy = "category")
-    private List<Activity> activityList = new ArrayList<>();
+    @ManyToOne
+    private Atividade atividade;
 
-    public Category() {
+    public Bloco() {
     }
 
-    public Category(Integer id, String descricao) {
+    public Bloco(Integer id, Date inicio, Date fim) {
         this.id = id;
-        this.descricao = descricao;
+        this.inicio = inicio;
+        this.fim = fim;
     }
 
     public Integer getId() {
@@ -34,12 +35,20 @@ public class Category {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public Date getInicio() {
+        return inicio;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setInicio(Date inicio) {
+        this.inicio = inicio;
+    }
+
+    public Date getFim() {
+        return fim;
+    }
+
+    public void setFim(Date fim) {
+        this.fim = fim;
     }
 
     @Override
@@ -47,9 +56,9 @@ public class Category {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Category category = (Category) o;
+        Bloco bloco = (Bloco) o;
 
-        return Objects.equals(id, category.id);
+        return Objects.equals(id, bloco.id);
     }
 
     @Override

@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_user")
-public class Activity {
+@Table(name = "tb_atividade")
+public class Atividade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,20 +18,20 @@ public class Activity {
     private String descricao;
     private Double preco;
 
-    @ManyToMany(mappedBy = "activitys")
-    private List<Participant> participants = new ArrayList<>();
+    @ManyToMany(mappedBy = "atividades")
+    private List<Participante> participantes = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 
     @OneToMany
-    private List<Block> blocks = new ArrayList<>();
+    private List<Bloco> blocos = new ArrayList<>();
 
-    public Activity() {
+    public Atividade() {
     }
 
-    public Activity(Integer id, String nome, String descricao, Double preco) {
+    public Atividade(Integer id, String nome, String descricao, Double preco) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -75,7 +75,7 @@ public class Activity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Activity activity = (Activity) o;
+        Atividade activity = (Atividade) o;
 
         return Objects.equals(id, activity.id);
     }

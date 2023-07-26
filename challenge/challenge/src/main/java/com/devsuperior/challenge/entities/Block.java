@@ -14,6 +14,9 @@ public class Block {
     private Date inicio;
     private Date fim;
 
+    @ManyToOne
+    private Activity activity;
+
     public Block() {
     }
 

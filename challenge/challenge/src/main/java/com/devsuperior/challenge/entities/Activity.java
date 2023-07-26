@@ -2,6 +2,9 @@ package com.devsuperior.challenge.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "tb_user")
 public class Activity {
@@ -10,8 +13,19 @@ public class Activity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+    @Column(columnDefinition = "TEXT")
     private String descricao;
     private Double preco;
+
+    @ManyToMany(mappedBy = "activitys")
+    private List<Participant> participants = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @OneToMany
+    private List<Block> blocks = new ArrayList<>();
 
     public Activity() {
     }

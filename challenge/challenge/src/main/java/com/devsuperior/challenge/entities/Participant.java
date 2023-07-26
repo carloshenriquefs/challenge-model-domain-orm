@@ -2,6 +2,9 @@ package com.devsuperior.challenge.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "tb_participant")
 public class Participant {
@@ -11,6 +14,12 @@ public class Participant {
     private Integer id;
     private String nome;
     private String email;
+
+    @ManyToMany
+    @JoinTable(name = "tb_participant_activity",
+            joinColumns = @JoinColumn(name = "participant_id"),
+            inverseJoinColumns = @JoinColumn(name = "activity_id"))
+    private List<Activity> activitys = new ArrayList<>();
 
     public Participant() {
     }

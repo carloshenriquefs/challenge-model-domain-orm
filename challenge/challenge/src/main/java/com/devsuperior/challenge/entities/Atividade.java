@@ -21,12 +21,12 @@ public class Atividade {
     @ManyToMany(mappedBy = "atividades")
     private List<Participante> participantes = new ArrayList<>();
 
+    @OneToMany(mappedBy = "atividade")
+    private List<Bloco> blocos = new ArrayList<>();
+
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
-
-    @OneToMany
-    private List<Bloco> blocos = new ArrayList<>();
 
     public Atividade() {
     }
@@ -68,6 +68,22 @@ public class Atividade {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public List<Participante> getParticipantes() {
+        return participantes;
+    }
+
+    public List<Bloco> getBlocos() {
+        return blocos;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     @Override
